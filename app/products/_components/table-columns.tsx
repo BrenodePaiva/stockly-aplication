@@ -23,7 +23,7 @@ import {
   MoreHorizontalIcon,
   TrashIcon,
 } from "lucide-react";
-import DeleteDialogContent from "./delete-dialog-content";
+import DeleteProductDialogContent from "./delete-dialog-content";
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
@@ -95,14 +95,14 @@ export const productTableColumns: ColumnDef<Product>[] = [
                 <EditIcon /> Editar
               </DropdownMenuItem>
 
-              <AlertDialogTrigger>
+              <AlertDialogTrigger asChild>
                 <DropdownMenuItem>
                   <TrashIcon /> Deletar
                 </DropdownMenuItem>
               </AlertDialogTrigger>
             </DropdownMenuContent>
           </DropdownMenu>
-          <DeleteDialogContent productId={product.id} />
+          <DeleteProductDialogContent productId={product.id} />
         </AlertDialog>
       );
     },

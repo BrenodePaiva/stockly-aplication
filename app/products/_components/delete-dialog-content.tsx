@@ -14,7 +14,9 @@ interface DeleteDialogContentProps {
   productId: string;
 }
 
-const DeleteDialogContent = ({ productId }: DeleteDialogContentProps) => {
+const DeleteProductDialogContent = ({
+  productId,
+}: DeleteDialogContentProps) => {
   const handleContinueClick = async () => {
     try {
       await deleteProduct({ id: productId });
@@ -43,4 +45,4 @@ const DeleteDialogContent = ({ productId }: DeleteDialogContentProps) => {
   );
 };
 
-export default DeleteDialogContent;
+export default DeleteProductDialogContent;
