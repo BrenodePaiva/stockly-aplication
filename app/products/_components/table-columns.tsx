@@ -1,32 +1,12 @@
 "use client";
 
-import {
-  AlertDialog,
-  AlertDialogTrigger,
-} from "@/app/_components/ui/alert-dialog";
 import { Badge } from "@/app/_components/ui/badge";
-import { Button } from "@/app/_components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/app/_components/ui/dropdown-menu";
+
 import { Product } from "@/app/generated/prisma";
 import { ColumnDef } from "@tanstack/react-table";
-import {
-  CircleIcon,
-  ClipboardCopyIcon,
-  EditIcon,
-  MoreHorizontalIcon,
-  TrashIcon,
-} from "lucide-react";
-import DeleteProductDialogContent from "./delete-dialog-content";
-import { Dialog, DialogTrigger } from "@/app/_components/ui/dialog";
-import UpsertProductDialogContent from "./upsert-dialog-content";
-import { useState } from "react";
+import { CircleIcon } from "lucide-react";
+
+import ProductDropdownMenu from "./table-dropdown-menu";
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
@@ -83,52 +63,8 @@ export const productTableColumns: ColumnDef<Product>[] = [
     accessorKey: "actions",
     header: "Ações",
     cell: (row) => {
-      const [editDialogOpen, setEditDialogOpen] = useState(false);
       const product = row.row.original;
-      return (
-        <AlertDialog>
-          <Dialog open={editDialogOpen} onOpenChange={setEditDialogOpen}>
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="ghost">
-                  <MoreHorizontalIcon size={16} />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent>
-                <DropdownMenuLabel>Ações</DropdownMenuLabel>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem
-                  onClick={() => navigator.clipboard.writeText(product.id)}
-                >
-                  <ClipboardCopyIcon /> Copiar ID
-                </DropdownMenuItem>
-
-                <DialogTrigger asChild>
-                  <DropdownMenuItem>
-                    <EditIcon /> Editar
-                  </DropdownMenuItem>
-                </DialogTrigger>
-
-                <AlertDialogTrigger asChild>
-                  <DropdownMenuItem>
-                    <TrashIcon /> Deletar
-                  </DropdownMenuItem>
-                </AlertDialogTrigger>
-              </DropdownMenuContent>
-            </DropdownMenu>
-            <UpsertProductDialogContent
-              defaultValues={{
-                name: product.name,
-                price: Number(product.price),
-                stock: product.stock,
-                id: product.id,
-              }}
-              onSuccess={() => setEditDialogOpen(false)}
-            />
-            <DeleteProductDialogContent productId={product.id} />
-          </Dialog>
-        </AlertDialog>
-      );
+      return <ProductDropdownMenu product={product} />;
     },
   },
 ];
