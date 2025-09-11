@@ -33,6 +33,7 @@ import { PlusIcon } from "lucide-react";
 import { useMemo, useState } from "react";
 import { useForm, Resolver } from "react-hook-form";
 import { z } from "zod";
+import SaleDropdownMenu from "./table-dropdown-menu";
 
 const formSchema = z.object({
   productId: z.uuid({ message: "Produto é obrigatório" }),
@@ -109,6 +110,12 @@ const UpsertSaleSheetContent = ({
     }, 0);
   }, [selectedProduct]);
 
+  const onDelete = (productId: string) => {
+    setSelectedProduct((currentProducts) => {
+      return currentProducts.filter((product) => product.id !== productId);
+    });
+  };
+
   return (
     <SheetContent className="!max-w-[700px]">
       <SheetHeader>
@@ -171,6 +178,7 @@ const UpsertSaleSheetContent = ({
             <TableHead>Preço Unitário</TableHead>
             <TableHead>Quantidade</TableHead>
             <TableHead>Total</TableHead>
+            <TableHead>Ações</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -182,6 +190,9 @@ const UpsertSaleSheetContent = ({
               <TableCell>
                 {formateCurrency(product.price * product.quantity)}
               </TableCell>
+              <TableCell>
+                <SaleDropdownMenu product={product} onDelete={onDelete} />
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>
@@ -189,6 +200,7 @@ const UpsertSaleSheetContent = ({
           <TableRow>
             <TableCell colSpan={3}>Total</TableCell>
             <TableCell>{formateCurrency(productsTotal)}</TableCell>
+            <TableCell></TableCell>
           </TableRow>
         </TableFooter>
       </Table>
