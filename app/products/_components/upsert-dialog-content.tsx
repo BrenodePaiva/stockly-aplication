@@ -29,16 +29,29 @@ import {
   UpsertProductSchema,
 } from "@/app/_actions/upsert-product/schema";
 import { upsertProduct } from "@/app/_actions/upsert-product";
+import { useAction } from "next-safe-action/hooks";
+import { toast } from "sonner";
+import { Dispatch, SetStateAction } from "react";
 
 interface UpsertProductDialogContentProps {
   defaultValues?: UpsertProductSchema;
-  onSuccess?: () => void;
+  setDialogOpen: Dispatch<SetStateAction<boolean>>;
 }
 
 const UpsertProductDialogContent = ({
   defaultValues,
-  onSuccess,
+  setDialogOpen,
 }: UpsertProductDialogContentProps) => {
+  const { execute: executeUpsertProduct } = useAction(upsertProduct, {
+    onError: () => {
+      toast.error("Ocorreu um erro.");
+    },
+    onSuccess: () => {
+      toast.success("Produto salvo com sucesso.");
+      setDialogOpen(false);
+    },
+  });
+
   const form = useForm<UpsertProductSchema>({
     shouldUnregister: true,
     resolver: zodResolver(
@@ -54,12 +67,7 @@ const UpsertProductDialogContent = ({
   const isEditing = !!defaultValues;
 
   const onSubmit = async (data: UpsertProductSchema) => {
-    try {
-      await upsertProduct({ ...data, id: defaultValues?.id });
-      onSuccess?.();
-    } catch (error) {
-      console.error(error);
-    }
+    executeUpsertProduct({ ...data, id: defaultValues?.id });
   };
   return (
     <DialogContent>

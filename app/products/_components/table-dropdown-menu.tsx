@@ -28,10 +28,10 @@ interface ProductDropdownMenuProps {
 }
 
 const ProductDropdownMenu = ({ product }: ProductDropdownMenuProps) => {
-  const [editDialogOpen, setEditDialogOpen] = useState(false);
+  const [editDialogIsOpen, setEditDialogIsOpen] = useState(false);
   return (
     <AlertDialog>
-      <Dialog open={editDialogOpen} onOpenChange={setEditDialogOpen}>
+      <Dialog open={editDialogIsOpen} onOpenChange={setEditDialogIsOpen}>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="ghost">
@@ -67,7 +67,7 @@ const ProductDropdownMenu = ({ product }: ProductDropdownMenuProps) => {
             stock: product.stock,
             id: product.id,
           }}
-          onSuccess={() => setEditDialogOpen(false)}
+          setDialogOpen={setEditDialogIsOpen}
         />
         <DeleteProductDialogContent productId={product.id} />
       </Dialog>
