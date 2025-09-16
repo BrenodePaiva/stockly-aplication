@@ -12,6 +12,12 @@ const Sales = async () => {
     value: product.id,
     label: product.name,
   }));
+
+  const tableData = sales.map((sale) => ({
+    ...sale,
+    products,
+    productOptions,
+  }));
   return (
     <div className="m-8 w-full space-y-8 rounded-lg bg-white p-8">
       <div className="flex w-full items-center justify-between">
@@ -23,7 +29,7 @@ const Sales = async () => {
         </div>
         <CreateSaleButton products={products} productOptions={productOptions} />
       </div>
-      <DataTable columns={saleTableColumns} data={sales} />
+      <DataTable columns={saleTableColumns} data={tableData} />
     </div>
   );
 };
