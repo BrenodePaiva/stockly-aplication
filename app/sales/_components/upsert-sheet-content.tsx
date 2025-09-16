@@ -27,7 +27,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/app/_components/ui/table";
-import { formateCurrency } from "@/app/_helpers/currency";
+import { formatCurrency } from "@/app/_helpers/currency";
 import { Product } from "@/app/generated/prisma";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CheckIcon, PlusIcon } from "lucide-react";
@@ -229,10 +229,10 @@ const UpsertSaleSheetContent = ({
           {selectedProduct.map((product) => (
             <TableRow key={product.id}>
               <TableCell>{product.name}</TableCell>
-              <TableCell>{formateCurrency(product.price)}</TableCell>
+              <TableCell>{formatCurrency(product.price)}</TableCell>
               <TableCell>{product.quantity}</TableCell>
               <TableCell>
-                {formateCurrency(product.price * product.quantity)}
+                {formatCurrency(product.price * product.quantity)}
               </TableCell>
               <TableCell>
                 <SaleDropdownMenu product={product} onDelete={onDelete} />
@@ -243,7 +243,7 @@ const UpsertSaleSheetContent = ({
         <TableFooter>
           <TableRow>
             <TableCell colSpan={3}>Total</TableCell>
-            <TableCell>{formateCurrency(productsTotal)}</TableCell>
+            <TableCell>{formatCurrency(productsTotal)}</TableCell>
             <TableCell></TableCell>
           </TableRow>
         </TableFooter>
