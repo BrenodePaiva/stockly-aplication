@@ -5,6 +5,7 @@ import UpsertSaleSheetContent from "./upsert-sheet-content";
 import { Product } from "@/app/generated/prisma";
 import { ComboboxOption } from "@/app/_components/ui/Combobox";
 import { useState } from "react";
+import { PlusIcon } from "lucide-react";
 
 interface CreateSaleProps {
   products: Product[];
@@ -16,7 +17,9 @@ const CreateSaleButton = (props: CreateSaleProps) => {
   return (
     <Sheet open={sheetIsOpen} onOpenChange={setSheetIsOpen}>
       <SheetTrigger asChild>
-        <Button>Nova Venda</Button>
+        <Button>
+          <PlusIcon /> Nova Venda
+        </Button>
       </SheetTrigger>
       <UpsertSaleSheetContent
         onSubmitSuccess={() => setSheetIsOpen(false)}
