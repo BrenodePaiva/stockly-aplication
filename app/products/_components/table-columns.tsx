@@ -2,11 +2,11 @@
 
 import { Badge } from "@/app/_components/ui/badge";
 
-import { Product } from "@/app/generated/prisma";
 import { ColumnDef } from "@tanstack/react-table";
 import { CircleIcon } from "lucide-react";
 
 import ProductDropdownMenu from "./table-dropdown-menu";
+import { ProductDto } from "@/app/_data-access/product/get-products";
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
@@ -18,7 +18,7 @@ const getStatusLabel = (status: string) => {
   return "Fora de estoque";
 };
 
-export const productTableColumns: ColumnDef<Product>[] = [
+export const productTableColumns: ColumnDef<ProductDto>[] = [
   {
     accessorKey: "name",
     header: "Nome",
@@ -43,7 +43,6 @@ export const productTableColumns: ColumnDef<Product>[] = [
     header: "Status",
     cell: (row) => {
       const product = row.row.original;
-      //@ts-expect-error - status is a string
       const label = getStatusLabel(product.status);
       return (
         <Badge
