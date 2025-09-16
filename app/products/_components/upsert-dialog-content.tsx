@@ -27,8 +27,8 @@ import { NumericFormat } from "react-number-format";
 import {
   upsertProductSchema,
   UpsertProductSchema,
-} from "@/app/_actions/upsert-product/schema";
-import { upsertProduct } from "@/app/_actions/upsert-product";
+} from "@/app/_actions/product/upsert-product/schema";
+import { upsertProduct } from "@/app/_actions/product/upsert-product";
 import { useAction } from "next-safe-action/hooks";
 import { toast } from "sonner";
 import { Dispatch, SetStateAction } from "react";

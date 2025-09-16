@@ -35,7 +35,7 @@ import { useMemo, useState } from "react";
 import { useForm, Resolver } from "react-hook-form";
 import { z } from "zod";
 import UpsertSaleDropdownMenu from "./upsert-table-dropdown-menu";
-import { createSale } from "@/app/_actions/create-sale";
+import { createSale } from "@/app/_actions/sale/create-sale";
 import { toast } from "sonner";
 import { useAction } from "next-safe-action/hooks";
 import { flattenValidationErrors } from "next-safe-action";
