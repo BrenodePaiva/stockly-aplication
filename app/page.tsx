@@ -1,3 +1,21 @@
-export default function Home() {
-  return <h2>Home Page</h2>;
-}
+import {
+  Header,
+  HeaderLeft,
+  HeaderSubtitle,
+  HeaderTitle,
+} from "./_components/header";
+
+const Home = async () => {
+  return (
+    <div className="m-8 w-full space-y-8 rounded-lg bg-white p-8">
+      <Header>
+        <HeaderLeft>
+          <HeaderSubtitle>Visão geral dos dados</HeaderSubtitle>
+          <HeaderTitle>Dashboard</HeaderTitle>
+        </HeaderLeft>
+      </Header>
+    </div>
+  );
+};
+
+export default Home;
