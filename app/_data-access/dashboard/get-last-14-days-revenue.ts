@@ -34,7 +34,7 @@ export const getLast14DaysRevenue = async (): Promise<DayTotalRevenueDto[]> => {
     );
     totalLast14DaysRevenue.push({
       day: day.format("DD/MM"),
-      totalRevenue: dayTotalRevenue[0].totalRevenue,
+      totalRevenue: Number(dayTotalRevenue[0].totalRevenue),
     });
   }
 
