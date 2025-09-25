@@ -45,3 +45,41 @@ export const productTableColumns: ColumnDef<ProductDto>[] = [
     },
   },
 ];
+
+export const productTableColumnsSkeleton = [
+  {
+    accessorKey: "name",
+    header: () => <div className="h-3 w-10 bg-gray-200"></div>,
+    cell: () => {
+      return <div className="h-3 w-9 bg-gray-200" />;
+    },
+  },
+  {
+    accessorKey: "price",
+    header: () => <div className="h-3 w-14 bg-gray-200"></div>,
+    cell: () => {
+      return <div className="w-13 h-3 bg-gray-200" />;
+    },
+  },
+  {
+    accessorKey: "stock",
+    header: () => <div className="h-3 w-10 bg-gray-200"></div>,
+    cell: () => {
+      return <div className="h-3 w-9 bg-gray-200" />;
+    },
+  },
+  {
+    accessorKey: "status",
+    header: () => <div className="h-3 w-10 bg-gray-200"></div>,
+    cell: () => {
+      return <div className="h-3 w-9 bg-gray-200" />;
+    },
+  },
+  {
+    accessorKey: "actions",
+    header: () => <div className="h-3 w-10 bg-gray-200"></div>,
+    cell: () => {
+      return <div className="h-3 w-9 bg-gray-200" />;
+    },
+  },
+];

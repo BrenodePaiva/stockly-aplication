@@ -17,7 +17,7 @@ import MostSoldProductsCard from "./_components/most-sold-products-card";
 
 const Home = async () => {
   return (
-    <div className="m-8 w-full space-y-8 rounded-lg">
+    <div className="m-8 ml-56 w-full space-y-8 rounded-lg">
       <Header>
         <HeaderLeft>
           <HeaderSubtitle>Visão geral dos dados</HeaderSubtitle>
