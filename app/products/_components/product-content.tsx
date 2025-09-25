@@ -12,6 +12,7 @@ import {
   HeaderSubtitle,
   HeaderTitle,
 } from "../../_components/header";
+
 import { Skeleton } from "@/app/_components/ui/skeleton";
 
 const ProductContent = async () => {
