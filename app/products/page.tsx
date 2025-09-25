@@ -1,36 +1,16 @@
 "use server";
-import { DataTable } from "../_components/ui/data-table";
-import { productTableColumns } from "./_components/table-columns";
-import { getProducts } from "../_data-access/product/get-products";
-import CreateProductButton from "./_components/create-product-button";
-import {
-  Header,
-  HeaderLeft,
-  HeaderRight,
-  HeaderSubtitle,
-  HeaderTitle,
-} from "../_components/header";
+
+import { Suspense } from "react";
+
+import ProductContent, {
+  ProductContentSkeleton,
+} from "./_components/product-content";
 
 const ProductsPage = async () => {
-  const products = await getProducts();
-
   return (
-    <div className="m-8 ml-56 w-full space-y-8 rounded-lg bg-white p-8">
-      <Header>
-        <HeaderLeft>
-          <HeaderSubtitle>Gestão de Produtos</HeaderSubtitle>
-          <HeaderTitle>Produto</HeaderTitle>
-        </HeaderLeft>
-        <HeaderRight>
-          <CreateProductButton />
-        </HeaderRight>
-      </Header>
-
-      <DataTable
-        columns={productTableColumns}
-        data={JSON.parse(JSON.stringify(products))}
-      />
-    </div>
+    <Suspense fallback={<ProductContentSkeleton />}>
+      <ProductContent />
+    </Suspense>
   );
 };
 
