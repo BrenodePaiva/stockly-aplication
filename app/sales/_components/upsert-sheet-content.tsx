@@ -181,9 +181,9 @@ const UpsertSaleSheetContent = ({
   };
 
   return (
-    <SheetContent className="!max-w-[700px]">
+    <SheetContent className="!max-w-[700px] overflow-y-auto">
       <SheetHeader>
-        <SheetTitle>Nova Venda</SheetTitle>
+        <SheetTitle>{saleId ? "Atualizar" : "Nova"} Venda</SheetTitle>
         <SheetDescription>
           Insirar as informações da venda abaixo
         </SheetDescription>
