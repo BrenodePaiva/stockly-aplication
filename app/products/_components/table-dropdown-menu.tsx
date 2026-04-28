@@ -12,7 +12,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/app/_components/ui/dropdown-menu";
-import { Product } from "@/app/generated/prisma";
+import { ProductDto } from "@/app/_data-access/product/get-products";
 import {
   ClipboardCopyIcon,
   EditIcon,
@@ -25,7 +25,7 @@ import { useState } from "react";
 import { toast } from "sonner";
 
 interface ProductDropdownMenuProps {
-  product: Product;
+  product: ProductDto;
 }
 
 const ProductDropdownMenu = ({ product }: ProductDropdownMenuProps) => {

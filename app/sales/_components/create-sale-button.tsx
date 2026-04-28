@@ -1,33 +1,34 @@
-"use client";
-import { Button } from "@/app/_components/ui/button";
-import { Sheet, SheetTrigger } from "@/app/_components/ui/sheet";
-import UpsertSaleSheetContent from "./upsert-sheet-content";
+import { getProducts } from "@/app/_data-access/product/get-products";
+import SheetSale from "./sheet-sale";
 import { ComboboxOption } from "@/app/_components/ui/Combobox";
-import { useState } from "react";
-import { PlusIcon } from "lucide-react";
-import { ProductDto } from "@/app/_data-access/product/get-products";
+import { Skeleton } from "@/app/_components/ui/skeleton";
+import { Button } from "@/app/_components/ui/button";
 
-interface CreateSaleProps {
-  products: ProductDto[];
-  productOptions: ComboboxOption[];
+
+const CreateSaleButton = async() => {
+  const products = await getProducts();
+  const productOptions: ComboboxOption[] = products.map((product) => ({
+    value: product.id,
+    label: product.name,
+  }));
+
+  return (
+    <SheetSale 
+    products={products}        
+    productOptions={productOptions}
+    />
+  )
 }
 
-const CreateSaleButton = (props: CreateSaleProps) => {
-  const [sheetIsOpen, setSheetIsOpen] = useState(false);
+export const CreateSaleButtonSkeleton = () => {
   return (
-    <Sheet open={sheetIsOpen} onOpenChange={setSheetIsOpen}>
-      <SheetTrigger asChild>
-        <Button>
-          <PlusIcon /> Nova Venda
+     <Skeleton>
+        <Button className="bg-gray-200">
+          <span className="w-4 h-4 bg-gray-300"></span>
+          <span className="w-20 h-4 bg-gray-300"></span>
         </Button>
-      </SheetTrigger>
-      <UpsertSaleSheetContent
-        isOpen={sheetIsOpen}
-        onSubmitSuccess={() => setSheetIsOpen(false)}
-        {...props}
-      />
-    </Sheet>
-  );
-};
+      </Skeleton>
+  )
+}
 
-export default CreateSaleButton;
+export default CreateSaleButton

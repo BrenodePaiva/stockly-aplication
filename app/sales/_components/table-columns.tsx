@@ -36,7 +36,7 @@ export const saleTableColumns: ColumnDef<SaleTableColumn>[] = [
     }) => formatCurrency(totalAmount),
   },
   {
-    accessorKey: "",
+    accessorKey: "date",
     header: "Data",
     cell: ({
       row: {
@@ -45,7 +45,7 @@ export const saleTableColumns: ColumnDef<SaleTableColumn>[] = [
     }) => new Date(date).toLocaleDateString("pt-BR"),
   },
   {
-    accessorKey: "",
+    accessorKey: "actions",
     header: "Ações",
     cell: ({ row: { original: sale } }) => (
       <SaleDropdownMenu
@@ -54,5 +54,43 @@ export const saleTableColumns: ColumnDef<SaleTableColumn>[] = [
         products={sale.products}
       />
     ),
+  },
+];
+
+export const saleTableColumnsSkeleton = [
+  {
+    accessorKey: "productNames",
+    header: () => <div className="h-3 w-10 bg-gray-200"></div>,
+    cell: () => {
+      return <div className="w-13 h-3 bg-gray-200" />;
+    },
+  },
+  {
+    accessorKey: "totalProducts",
+    header: () => <div className="h-3 w-40 bg-gray-200 ml-5"></div>,
+    cell: () => {
+      return <div className="h-3 w-9 bg-gray-200 ml-5"  />;
+    },
+  },
+  {
+    accessorKey: "totalAmount",
+    header: () => <div className="h-3 w-10 bg-gray-200"></div>,
+    cell: () => {
+      return <div className="h-3 w-9 bg-gray-200" />;
+    },
+  },
+  {
+    accessorKey: "date",
+    header: () => <div className="h-3 w-10 bg-gray-200"></div>,
+    cell: () => {
+      return <div className="h-3 w-9 bg-gray-200" />;
+    },
+  },
+  {
+    accessorKey: "actions",
+    header: () => <div className="h-3 w-10 bg-gray-200"></div>,
+    cell: () => {
+      return <div className="h-3 w-9 bg-gray-200" />;
+    },
   },
 ];

@@ -40,4 +40,5 @@ export const deleteSale = actionClient
       }
     });
     revalidatePath("/", "layout");
+    revalidatePath("/sales");
   });

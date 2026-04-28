@@ -18,6 +18,7 @@ export interface SalesDto {
 }
 
 export const getSales = async (): Promise<SalesDto[]> => {
+  await new Promise((resolver) => setTimeout(resolver, 2000));
   const sales = await db.sale.findMany({
     include: {
       products: {
@@ -26,6 +27,9 @@ export const getSales = async (): Promise<SalesDto[]> => {
         },
       },
     },
+    orderBy: {
+      date: "desc",
+    }
   });
 
   return sales.map((sale) => ({

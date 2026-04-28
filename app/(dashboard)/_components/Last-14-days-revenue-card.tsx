@@ -7,7 +7,7 @@ const Last14DaysRevenueCard = async () => {
     <div className="flex h-full flex-col overflow-hidden rounded-xl bg-white p-6">
       <p className="text-lg font-semibold text-slate-900">Receita</p>
       <p className="text-sm text-slate-400">Ultimos 14 dias</p>
-      <RevenueChart data={totalLast14DaysRevenue} />;
+      <RevenueChart data={totalLast14DaysRevenue} />
     </div>
   );
 };

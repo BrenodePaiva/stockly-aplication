@@ -86,4 +86,5 @@ export const upsertSale = actionClient
       }
     });
     revalidatePath("/", "layout");
+    revalidatePath("/sales");
   });
